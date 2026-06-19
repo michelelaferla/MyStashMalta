@@ -61,6 +61,22 @@ function App() {
     }
   };
 
+  const parseMoneyInput = (value: string): number => {
+    const cleaned = value
+        .replace(/[^\d.]/g, '')
+        .replace(/^0+(?=\d)/, '');
+
+    if (cleaned === '') {
+      return 0;
+    }
+
+    return Number(cleaned);
+  };
+
+  const displayMoneyInput = (value: number): string => {
+    return value === 0 ? '' : String(value);
+  };
+
   return (
     <main>
       <section className="hero">
@@ -99,11 +115,11 @@ function App() {
             <div className="input-row">
               <span>€</span>
               <input
-                type="number"
-                min="0"
-                step="100"
-                value={input.salary}
-                onChange={(event) => update('salary', Number(event.target.value))}
+                  type="text"
+                  inputMode="decimal"
+                  value={displayMoneyInput(input.salary)}
+                  placeholder="0"
+                  onChange={(event) => update('salary', parseMoneyInput(event.target.value))}
               />
               <select value={input.salaryFrequency} onChange={(event) => update('salaryFrequency', event.target.value as SalaryInput['salaryFrequency'])}>
                 <option value="annual">annual</option>
@@ -157,11 +173,11 @@ function App() {
             <div className="input-row">
               <span>€</span>
               <input
-                type="number"
-                min="0"
-                step="100"
-                value={input.partTimeIncome}
-                onChange={(event) => update('partTimeIncome', Number(event.target.value))}
+                  type="text"
+                  inputMode="decimal"
+                  value={displayMoneyInput(input.partTimeIncome)}
+                  placeholder="0"
+                  onChange={(event) => update('partTimeIncome', parseMoneyInput(event.target.value))}
               />
               <span className="suffix">annual</span>
             </div>
