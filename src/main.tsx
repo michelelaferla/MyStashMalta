@@ -18,7 +18,7 @@ const currencyNoCents = new Intl.NumberFormat('en-MT', { style: 'currency', curr
 
 function App() {
   const [input, setInput] = useState<SalaryInput>({
-    salary: 30000,
+    salary: 11931,
     salaryFrequency: 'annual',
     basis: 'single',
     children: '0',
@@ -151,8 +151,8 @@ function App() {
           <label>
             Employee NI category
             <select value={input.birthCohort} onChange={(event) => update('birthCohort', event.target.value as SalaryInput['birthCohort'])}>
-              <option value="from_1962">Born from 1 Jan 1962 onwards</option>
-              <option value="up_to_1961">Born up to 31 Dec 1961</option>
+              <option value="from_1962">Born after Jan 1962</option>
+              <option value="up_to_1961">Born before Jan 1962</option>
               <option value="under_18">Under 18</option>
               <option value="student_under_18">Student under 18</option>
               <option value="student_18_plus">Student 18+</option>
